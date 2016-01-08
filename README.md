@@ -1,2 +1,2 @@
 # snow
-ServiceNow
+Scripts used in ServiceNow
