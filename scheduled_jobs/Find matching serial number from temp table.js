@@ -6,7 +6,7 @@
 * compare given serial number on hardware and temp table to update model
 * 1. upload xls of sn + desired model to a temp table
 * 2. for each rec on temp table, look up alm_hardware record that matches given serial #
-* 3. if the models don't match, update the alm_hardware record with the temp record model
+* 3. incr counter
 *
 * @author Thomas G Bates
 * 2015-12-04
