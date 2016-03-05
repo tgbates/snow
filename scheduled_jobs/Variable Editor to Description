@@ -1,0 +1,18 @@
+// http://servicenowscholar.com/
+// Business Rule - run before insert
+//
+toDescription();
+function toDescription() {
+  var notEmptyVars = [];
+  var v;
+  var desc = '';
+  /* Put all variable values and labels from the variable pool into an array */
+  for (var i in current.variables) {
+    v = current.variables[i];
+    /* Only include non-empty variables, and exclude Label and Container variables */
+    if (v != '' && v != 'false' && v.getGlideObject().getQuestion().type != 11 && v.getGlideObject().getQuestion().type != 19 && v.getGlideObject().getQuestion().type != 20) {
+      desc += v.getGlideObject().getQuestion().getLabel() + ': ' + v.getDisplayValue() + '\n';
+    }
+  }
+  current.description = desc;
+}
