@@ -10,13 +10,13 @@
 
 (function executeRule(current, previous /*null when async*/) {
 
-	var tsk = new GlideRecord('task');
+	var taskGR = new GlideRecord('task');
 
 	// Get the task to which the approval relates
-	tsk.get(current.sysapproval);
+	taskGR.get(current.sysapproval);
 
 	// Update the comments
-	tsk.comments = current.state.getDisplayValue() + ' by ' + current.approver.name + ' on ' + current.sys_updated_on + '\nComments:  '  + current.comments;
-	tsk.update();
+	taskGR.comments = current.state.getDisplayValue() + ' by ' + current.approver.name + ' on ' + current.sys_updated_on + '\nComments:  '  + current.comments;
+	taskGR.update();
 
 })(current, previous);
