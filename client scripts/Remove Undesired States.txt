@@ -1,0 +1,53 @@
+practice in my dev instance
+
+
+g_form.getValue('state');
+g_form.getOption('state','1'); // no example, what's this for?
+if the value is x then remove the non-allowed options
+g_form.removeOption('state', '1');
+
+else if value y remove other options
+
+should this be a case?
+yes
+
+do this if the assignment group is AppDev
+
+
+
+
+https://developer.servicenow.com/app.do#!/api_doc?v=geneva&type=client&scoped=null&to=class__client_glideform__geneva
+
+
+
+if (g_user.hasRole('itil')) {
+    var oldLabel = g_form.getLabelOf('comments');
+    g_form.setLabelOf('comments', oldLabel + ' (Customer visible)');
+}
+
+if (st == -5) {
+		g_form.addInfoMessage('state = ' + st);
+		g_form.addDecoration('state','icon-lightbulb', 'color-green');
+		g_form.removeOption('state','3');
+
+	}
+	else {
+
+		g_form.addInfoMessage('something else = ' + st);
+		g_form.addDecoration('state','icon-lightbulb', 'color-red');
+	}
+
+
+negative value for new active state
+New values representing inactive states should have a value above 8.
+  Open (Draft = -5)
+  Work In Progress = 2
+  Closed - Will Not Fix = 12
+  Closed - Can Not Reproduce = 13
+  Closed - Duplicate = 14
+  Testing/QA = 8
+  Ready for Deployment = 10
+  Reopened = -6
+  Approved for Deployment -7
+  Closed Complete = 3
+  Resolved - Fixed = 15
