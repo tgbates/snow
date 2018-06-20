@@ -1,0 +1,33 @@
+// Business Rule
+// Insert/Update
+// When: Category changes to X (group)
+
+
+(function executeRule(current, previous /*null when async*/) {
+
+
+  var job_name = 'Business Rule: Add Group Members to Incident Watchlist';
+	var gr = new GlideRecord("sys_user_grmember");
+  var watcherGroup = gs.getProperty('incident.group.watch_list');  // Group sys_id property
+	gs.info(job_name + '- current.watch_list = ' + current.watch_list + ' for ' + current.number);
+	gr.addQuery("group", watcherGroup);  
+	gr.query();
+	
+	var currentList = current.watch_list;  
+	var sysId = '';  // variable for string containing user sys_id
+	   
+	while (gr.next()) {
+		sysId = gr.user;
+		gs.info(job_name + '- checking to see if ' + sysId + ' is in ' + currentList);
+		if (currentList.indexOf(sysId) > -1 ) {  // watch list contains watcher already
+			gs.info(job_name + '- NOT adding ' + gr.user.getDisplayValue() + ' to watch list: already a member for ' + current.number);
+		} 
+		else {
+    		current.watch_list += "," + gr.user;
+	    	gs.info(job_name + '- adding ' + gr.user.getDisplayValue() + ' to watch list for ' + current.number); 
+		}
+	}
+  
+  
+
+})(current, previous);
